@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient List{% endblock %}
+
+{% block content %}
+  <h2>Patient List</h2>
+  <ul class="list-group">
+    {% for patient in patients %}
+      <li class="list-group-item">
+        {{ patient.first_name }} {{ patient.last_name }} - {{ patient.age }} years old - {{ patient.address }}
+        <a href="{% url 'delete_patient' patient.id %}" class="btn btn-danger btn-sm float-right ml-2">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'add_patient' %}" class="btn btn-primary mt-3">Add Patient</a>
+{% endblock %}

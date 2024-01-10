@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Nurse{% endblock %}
+
+{% block content %}
+  <h2>Add Nurse</h2>
+  <form method="post" class="mt-3" action="{% url 'add_nurse' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save Nurse</button>
+  </form>
+  <a href="{% url 'nurse_list' %}" class="btn btn-secondary mt-3">Back to Nurse List</a>
+{% endblock %}
