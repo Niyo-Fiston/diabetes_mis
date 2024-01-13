@@ -8,7 +8,7 @@ class Patient(models.Model):
     age = models.IntegerField()
     address = models.CharField(max_length=255)
     glucose_level = models.FloatField()
-    treatment_plan = models.TextField()
+    treatment_plan = models.CharField(max_length=300)
     weight = models.FloatField()
     height = models.FloatField()
 

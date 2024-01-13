@@ -7,8 +7,11 @@
   <ul class="list-group">
     {% for patient in patients %}
       <li class="list-group-item">
-        {{ patient.first_name }} {{ patient.last_name }} - {{ patient.age }} years old - {{ patient.address }}
+        {{ patient.first_name }} {{ patient.last_name }} - {{ patient.age }} years old - {{ patient.address }} 
+        - Glucose Level: {{ patient.glucose_level }} - Treatment Plan: {{ patient.treatment_plan }} 
+        - Weight: {{ patient.weight }} - Height: {{ patient.height }}
         <a href="{% url 'delete_patient' patient.id %}" class="btn btn-danger btn-sm float-right ml-2">Delete</a>
+        <a href="{% url 'update_patient' patient.id %}" class="btn btn-primary btn-sm float-right">Update</a>
       </li>
     {% endfor %}
   </ul>
