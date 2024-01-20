@@ -1,10 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient
-from .forms import PatientForm
+from .forms import PatientForm, PatientSearchForm
+from django.db import models
 
 def patient_list(request):
     patients = Patient.objects.all()
-    return render(request, 'patients/patient_list.html', {'patients': patients})
+    search_form = PatientSearchForm(request.GET)
+    if search_form.is_valid():
+        search_query = search_form.cleaned_data.get('search_query', '')
+        patients = patients.filter(
+            models.Q(first_name__icontains=search_query) |
+            models.Q(last_name__icontains=search_query) |
+            models.Q(address__icontains=search_query)
+            # Add other fields as needed
+        )
+
+        return render(request, 'patients/patient_list.html', {'patients': patients, 'search_form': search_form})
+    
+    else:
+        return render(request, 'patients/patient_list.html', {'patients': patients})
+
 
 def add_patient(request):
     if request.method == 'POST':
@@ -30,8 +45,6 @@ def update_patient(request, patient_id):
         if form.is_valid():
             form.save()
             return redirect('patient_list')  # Redirect to your patient list view
-        else:
-            print(form.errors)
     else:
         form = PatientForm(instance=patient)
 

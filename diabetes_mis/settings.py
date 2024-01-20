@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nurses',  # Add your apps here
     'patients', # Add your apps here
-     'crispy_forms',
-    
+    'crispy_forms',    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
