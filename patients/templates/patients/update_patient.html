@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 {% block title %}Update Patient{% endblock %}
 
-{% block additional_content %}
+{% block content %}
     <h2>Update Patient</h2>
     <form method="post" class="mt-3" action="{% url 'update_patient' patient.id %}">
         {% csrf_token %}
