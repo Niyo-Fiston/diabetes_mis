@@ -6,8 +6,10 @@ from django.urls import path, include
 urlpatterns = [
     # ... other URL patterns
     path('admin/', admin.site.urls),
-    path('patients/', include('patients.urls')),
-    path('nurses/', include('nurses.urls')),
+    path('', include('patients.urls')),
+    #path('nurse', include('nurses.urls')),
+    path('', include('django.contrib.auth.urls')),
+    
 ]
 
 

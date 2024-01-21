@@ -5,26 +5,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Biryogo Diabetes Management Information System{% endblock %}</title>
+    <title>{% block title %}Biryogo Diabetes MIS{% endblock %}</title>
     <!-- Include Bootstrap CSS (adjust the paths as needed) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Add any additional CSS files or stylesheets here -->
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Biryogo Diabetes Management Information System</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'patient_list' %}">Biryogo Diabetes MIS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'patient_list' %}">Diabetes Patients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_patient' %}">Add Diabetes Patient</a>
-                </li>
-            </ul>
+        <div class="container-fluid">
+            <div id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'patient_list' %}">Diabetes Patients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_patient' %}">Add Diabetes Patient</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <span class="navbar-text">Logged in as {{user.username}} | </span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link" style="border: none; background: none; cursor: pointer;">Logout</button>
+                    </form>
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -37,6 +55,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Add any additional JS scripts here -->
-
 </body>
 </html>
