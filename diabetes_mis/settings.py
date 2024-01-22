@@ -38,12 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'nurses',  # Add your apps here
     'patients', # Add your apps here
-    'crispy_forms',  
-    
+   'crispy_forms',
 ]
-
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap"
 
